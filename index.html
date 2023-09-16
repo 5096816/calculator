@@ -1,0 +1,240 @@
+<html>
+<head>
+<title>Document</title>
+<style>
+body{background-color:gray}
+h1{color: White; text-align: center}
+#calculator{background-color: black; height: 470px; width: 300px; margin: auto; display:grid; grid-template-areas:"output output output output" "allClear plusMinus percent devide" "number7 number8 number9 times" "number4 number5 number6 minus" "number1 number2 number3 plus" "number0 number0 decimalPoint equals"; align-items: center;justify-items:center; border-radius: 25px; border: solid; border-width: 15px}
+.button {width:65px;height:65px;border-radius:50%;display:flex;align-items: center;justify-content: center;}
+.text{font-size:25px;}
+#output {grid-area: output; width: 275px; height: 65px; text-align: right; color: white; display:flex;align-items: center;justify-content: right; font-size: 35px}
+#outputText{padding-right: 10px}
+#allClear {grid-area: allClear; background-color: lightgray; color: black;}
+#plusMinus {grid-area: plusMinus; background-color: lightgray; color: black;}
+#percent {grid-area: percent; background-color: lightgray; color: black;}
+#devide {grid-area: devide; background-color: orange; color: white;}
+#number7 {grid-area: number7; background-color: gray; color: white;}
+#number8 {grid-area: number8; background-color: gray; color: white;}
+#number9 {grid-area: number9; background-color: gray; color: white;}
+#times {grid-area: times; background-color: orange; color: white;}
+#number4 {grid-area: number4; background-color: gray; color: white;}
+#number5 {grid-area: number5; background-color: gray; color: white;}
+#number6 {grid-area: number6; background-color: gray; color: white;}
+#minus {grid-area: minus; background-color: orange; color: white;}
+#number1 {grid-area: number1; background-color: gray; color: white;}
+#number2 {grid-area: number2; background-color: gray; color: white;}
+#number3 {grid-area: number3; background-color: gray; color: white;}
+#plus {grid-area: plus; background-color: orange; color: white;}
+#number0 {width:140px;height:65px;border-radius:32.5px;text-align:center;grid-area: number0; background-color: gray; color: white; display: flex; align-items: center;justify-content: center;}
+#decimalPoint {grid-area: decimalPoint; background-color: gray; color: white;}
+#equals {grid-area: equals; background-color: orange; color: white;}
+</style>
+</head>
+<body>
+<h1 id=title>Calculator</h1>
+<div id = calculator>
+<div id = output><div id =outputText>0</div></div>
+<div id = allClear class = button><div id =allClearText class = text>AC</div></div>
+<div id = plusMinus class = button><div id =plusMinusText class = text>+/-</div></div>
+<div id = percent class = button><div id =percentText class = text>%</div></div>
+<div id = devide class = button><div id =devideText class = text>&#x00F7;</div></div>
+<div id = number7 class = button><div id =number7Text class = text>7</div></div>
+<div id = number8 class = button><div id =number8Text class = text>8</div></div>
+<div id = number9 class = button><div id =number9Text class = text>9</div></div>
+<div id = times class = button><div id =timesText class = text>x</div></div>
+<div id = number4 class = button><div id =number4Text class = text>4</div></div>
+<div id = number5 class = button><div id =number5Text class = text>5</div></div>
+<div id = number6 class = button><div id =number6Text class = text>6</div></div>
+<div id = minus class = button><div id =minusText class = text>-</div></div>
+<div id = number1 class = button><div id =number1Text class = text>1</div></div>
+<div id = number2 class = button><div id =number2Text class = text>2</div></div>
+<div id = number3 class = button><div id =number3Text class = text>3</div></div>
+<div id = plus class = button><div id =plusText class = text>+</div></div>
+<div id = number0><div id =number0Text class = text>0</div></div>
+<div id = decimalPoint class = button><div id =decimalPointText class = text>.</div></div>
+<div id = equals class = button><div id =equalsText class = text>=</div></div>
+</div>
+<script>
+let currentValue
+let value1 = 0
+let opperation
+let value2 = 0
+let addedNumber
+let stage = 1
+document.getElementById("equals").onclick = function () {equals()}
+document.getElementById("number1").onclick = function () {addNumber(1)}
+document.getElementById("number2").onclick = function () {addNumber(2)}
+document.getElementById("number3").onclick = function () {addNumber(3)}
+document.getElementById("number4").onclick = function () {addNumber(4)}
+document.getElementById("number5").onclick = function () {addNumber(5)}
+document.getElementById("number6").onclick = function () {addNumber(6)}
+document.getElementById("number7").onclick = function () {addNumber(7)}
+document.getElementById("number8").onclick = function () {addNumber(8)}
+document.getElementById("number9").onclick = function () {addNumber(9)}
+document.getElementById("number0").onclick = function () {addNumber(0)}
+document.getElementById("allClear").onclick = function () {clear()}
+document.getElementById("plusMinus").onclick = function () {plusMinus()}
+document.getElementById("devide").onclick = function () {recordOpperation ("devide")}
+document.getElementById("times").onclick = function () {recordOpperation ("times")}
+document.getElementById("minus").onclick = function () {recordOpperation ("minus")}
+document.getElementById("plus").onclick = function () {recordOpperation ("plus")}
+document.getElementById("percent").onclick = function () {percent ()}
+function percent (){
+if (stage == 1){
+value1 = value1/100
+document.getElementById("outputText").innerHTML = value1
+}
+else if (stage == 3){
+value2 = value2/100
+document.getElementById("outputText").innerHTML = value2
+}
+else if (stage == 4){
+value1 = value1/100
+document.getElementById("outputText").innerHTML = value1
+}}
+function resetOpperation (){
+document.getElementById("devide").style.backgroundColor = "orange"
+document.getElementById("devide").style.color = "white"
+document.getElementById("times").style.backgroundColor = "orange"
+document.getElementById("times").style.color = "white"
+document.getElementById("minus").style.backgroundColor = "orange"
+document.getElementById("minus").style.color = "white"
+document.getElementById("plus").style.backgroundColor = "orange"
+document.getElementById("plus").style.color = "white"
+}
+function recordOpperation (type){
+document.getElementById("outputText").innerHTML = value2
+if (stage == 1){
+stage = 2
+opperation = type
+resetOpperation ()
+document.getElementById(type).style.backgroundColor = "white"
+document.getElementById(type).style.color = "orange"
+}
+else if (stage == 2){
+opperation = type
+resetOpperation ()
+document.getElementById(type).style.backgroundColor = "white"
+document.getElementById(type).style.color = "orange"
+}
+else if (stage == 3){
+equals ()
+stage = 2
+opperation = type
+resetOpperation ()
+document.getElementById(type).style.backgroundColor = "white"
+document.getElementById(type).style.color = "orange"
+}
+else if (stage == 4){
+stage = 2
+opperation = type
+resetOpperation ()
+document.getElementById(type).style.backgroundColor = "white"
+document.getElementById(type).style.color = "orange"
+}
+}
+function plusMinus (){
+if (stage == 1){
+value1 = -value1
+document.getElementById("outputText").innerHTML = value1
+}
+else if (stage == 2){
+stage = 3
+value2 = -value2
+document.getElementById("outputText").innerHTML = value2
+}
+else if (stage == 3){
+value2 = -value2
+document.getElementById("outputText").innerHTML = value2
+}
+else if (stage == 4){
+value1 = -value1
+document.getElementById("outputText").innerHTML = value1
+}}
+function clear (){
+if (document.getElementById("allClearText").innerHTML == "C"){
+if (stage == 1){
+value1 = 0
+document.getElementById("outputText").innerHTML = value1
+document.getElementById("allClearText").innerHTML = "AC"
+}
+else if(stage == 2){
+document.getElementById("allClearText").innerHTML = "AC"
+}
+if (stage == 3){
+value2 = 0
+document.getElementById("outputText").innerHTML = value2
+document.getElementById("allClearText").innerHTML = "AC"
+}
+if (stage == 4){
+value1 = 0
+document.getElementById("outputText").innerHTML = value1
+document.getElementById("allClearText").innerHTML = "AC"
+}}
+else if (document.getElementById("allClearText").innerHTML == "AC"){
+value1 = 0
+value2 = 0
+opperation = ""
+resetOpperation ()
+document.getElementById("outputText").innerHTML = value1
+}
+}
+function addNumber (number){
+if (stage == 1){
+addedNumber = number
+value1 = Number(String(value1)+String(addedNumber))
+document.getElementById("outputText").innerHTML = value1
+document.getElementById("allClearText").innerHTML = "C"
+}
+else if(stage == 2){
+stage = 3
+addedNumber = number
+resetOpperation ()
+value2 = Number(String(value2)+String(addedNumber))
+document.getElementById("outputText").innerHTML = value2
+document.getElementById("allClearText").innerHTML = "C"
+}
+else if(stage == 3){
+addedNumber = number
+value2 = Number(String(value2)+String(addedNumber))
+document.getElementById("outputText").innerHTML = value2
+document.getElementById("allClearText").innerHTML = "C"
+}
+else if(stage == 4){
+value1 = 0
+stage = 1
+addedNumber = number
+opperation = ""
+value1 = Number(String(value1)+String(addedNumber))
+document.getElementById("outputText").innerHTML = value1
+document.getElementById("allClearText").innerHTML = "C"
+}}
+function equals (){
+if (opperation == "plus"){
+value1 = value1 + value2
+value2 = 0
+stage = 4
+document.getElementById("outputText").innerHTML = value1
+}
+if (opperation == "minus"){
+value1 = value1 - value2
+value2 = 0
+stage = 4
+document.getElementById("outputText").innerHTML = value1
+}
+if (opperation == "times"){
+value1 = value1 * value2
+value2 = 0
+stage = 4
+document.getElementById("outputText").innerHTML = value1
+}
+if (opperation == "devide"){
+value1 = value1 / value2
+value2 = 0
+stage = 4
+document.getElementById("outputText").innerHTML = value1
+}
+}
+</script>
+</body>
+</html>
